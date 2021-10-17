@@ -8,7 +8,7 @@ namespace Full_GRASP_And_SOLID
 {
     public class Step
     {
-        public Step(Product input, double quantity, Equipment equipment, int time)
+        public Step(ICatalogItem input, double quantity, ICatalogItem equipment, int time)
         {
             this.Quantity = quantity;
             this.Input = input;
@@ -16,20 +16,20 @@ namespace Full_GRASP_And_SOLID
             this.Equipment = equipment;
         }
 
-        public Product Input { get; set; }
+        public ICatalogItem Input { get; set; }
 
         public double Quantity { get; set; }
 
         public int Time { get; set; }
 
-        public Equipment Equipment { get; set; }
+        public ICatalogItem Equipment { get; set; }
 
         // Agregado por Expert
         public double GetStepCost()
         {
             return
-                (this.Input.UnitCost * this.Quantity) +
-                (this.Equipment.HourlyCost * this.Time);
+                (this.Input.Cost * this.Quantity) +
+                (this.Equipment.Cost * this.Time);
         }
 
         // Agregado por SRP

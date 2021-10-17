@@ -4,23 +4,21 @@
 // </copyright>
 //-------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-
 namespace Full_GRASP_And_SOLID
 {
     public class Program
     {
-
         public static void Main(string[] args)
         {
-            Catalog.PopulateCatalogs();
+            
+            ProductCatalog.PopulateCatalogs();
+            EquipmentCatalog.PopulateCatalogs();
 
             Recipe recipe = new Recipe();
-            recipe.FinalProduct = Catalog.GetProduct("Café con leche");
+            recipe.FinalProduct = ProductCatalog.GetByDescription("Café con leche");
             recipe.AddStep("Café", 100, "Cafetera", 120);
-            
-            
+           
+           
             IPrinter printer;
             printer = new ConsolePrinter();
             printer.PrintRecipe(recipe);

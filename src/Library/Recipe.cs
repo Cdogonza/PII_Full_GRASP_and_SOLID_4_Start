@@ -4,7 +4,6 @@
 // </copyright>
 //-------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 namespace Full_GRASP_And_SOLID
@@ -12,13 +11,13 @@ namespace Full_GRASP_And_SOLID
     public class Recipe
     {
         private IList<Step> steps = new List<Step>();
-
-        public Product FinalProduct { get; set; }
-
+        
+        public ICatalogItem FinalProduct { get; set; }
 
         public void AddStep(string input, double quantity, string equipment, int time)
         {
-            Step step1 = new Step(Catalog.GetProduct(input), quantity, Catalog.GetEquipment(equipment), time);
+           
+            Step step1 = new Step(ProductCatalog.GetByDescription(input), quantity, EquipmentCatalog.GetByDescription(equipment), time);
             this.steps.Add(step1);
         }
 
@@ -51,7 +50,6 @@ namespace Full_GRASP_And_SOLID
             {
                 result = result + step.GetStepCost();
             }
-
             return result;
         }
     }
